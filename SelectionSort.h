@@ -3,6 +3,6 @@
 
 template <class TP> void sortPersons(int, TP**);
 
-#include "SelectionSort.tpp"
+#include "selectionSort.tpp"
 
 #endif //IND_7_OOP_SELECTIONSORT_H
