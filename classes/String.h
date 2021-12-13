@@ -6,8 +6,7 @@
 
 class String {
 public:
-    String();
-    explicit String(const char*);
+    String(const char* str = "");
 
     String(const String&);
     String(String &&) noexcept;
@@ -19,6 +18,7 @@ public:
 
     String operator+(const String&);
     void operator+=(const String&);
+    void operator+=(char);
 
     friend bool operator==(const String&, const String&);
     friend bool operator!=(const String&, const String&);

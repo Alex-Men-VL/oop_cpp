@@ -35,11 +35,11 @@ void setPersonsFromFile(T inputFileName, TP **persons) {
         throw ERROR_FILE_NOT_OPEN;
     }
 
-    TS line("");
-    inputFile >> line;
+    int count;
+    inputFile >> count;
 
     int personNumber = 0;
-    while (!inputFile.eof()) {
+    while (personNumber != count) {
         persons[personNumber] = new TP();
         inputFile >> lastName >> firstName >> dateYear;
         persons[personNumber]->setPerson(lastName, firstName, dateYear);
