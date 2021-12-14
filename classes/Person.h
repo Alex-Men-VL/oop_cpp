@@ -13,7 +13,7 @@ public:
     Person();
 
     void operator delete(void *);
-    void* operator new(size_t size);
+    void* operator new(size_t);
 
     T getFirstName() const;
     T getLastName() const;

@@ -28,7 +28,9 @@ TS getOutputFileName(){
 template <typename T, typename TP, typename TS>
 void setPersonsFromFile(T inputFileName, TP **persons) {
     std::ifstream inputFile;
-    TS firstName(""), lastName(""), dateYear("");
+    TS firstName("");
+    TS lastName("");
+    TS dateYear("");
 
     inputFile.open(inputFileName);
     if (!inputFile) {
@@ -61,8 +63,12 @@ void setPersonsCountFromFile(TS inputFileName, int &count) {
     }
 }
 
-template <typename TP>
+template <typename TP, typename TS>
 void checkInput(const int pCount, TP **persons) {
+    TS totalYear = getCurrentYear<TS>();
+    int delta = 100;
+    TS minYear = getCurrentYear<TS>(delta);
+
     for (int pNumber = 0; pNumber < pCount; pNumber++) {
         char lastNameFirstLetter = persons[pNumber]->getLastName()[0];
         if (!isupper(lastNameFirstLetter)) {
@@ -87,8 +93,13 @@ void checkInput(const int pCount, TP **persons) {
             throw ERROR_NOT_CORRECT_DY;
         }
 
+        TS year = persons[pNumber]->getDateYear();
+
+        if (year > totalYear || year < minYear) {
+            throw ERROR_YEAR;
+        }
         for (int digitNumber = 0; digitNumber < dateYearLen; digitNumber++) {
-            char digit = persons[pNumber]->getDateYear()[digitNumber];
+            char digit = year[digitNumber];
             if (digitNumber == 0 && digit == '0') {
                 throw ERROR_NOT_CORRECT_DY;
             }
@@ -120,4 +131,21 @@ void printPersonsInFile(TS outputFileName, const int pCount, TP **persons) {
         outputFile << persons[i]->getFirstName() << " ";
         outputFile << persons[i]->getDateYear() << "\n";
     }
+}
+
+template <typename TS>
+TS getCurrentYear(int delta) {
+    time_t seconds = time(NULL);
+    tm* time = localtime(&seconds);
+    int tYear = time->tm_year + 1900;
+    tYear -= delta;
+
+    char *str = new char[5];
+    str[0] = tYear / 1000 + '0';
+    str[1] = tYear / 100 % 10 + '0';
+    str[2] = tYear / 10 % 10 + '0';
+    str[3] = tYear % 10 + '0';
+    str[4] = '\0';
+    TS totalYear(str);
+    return totalYear;
 }

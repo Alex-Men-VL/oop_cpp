@@ -17,7 +17,7 @@ int getSolution(T inputFileName, T outputFileName) {
 
     try {
         setPersonsFromFile<T, TP, TS>(inputFileName, persons);
-        checkInput<TP>(personsCount, persons);
+        checkInput<TP, TS>(personsCount, persons);
     } catch (const char* error) {
         std::cerr << error << std::endl;
         return 1;
