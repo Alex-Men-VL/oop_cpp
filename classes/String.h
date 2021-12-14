@@ -27,7 +27,7 @@ public:
     friend bool operator<(const String&, const String&);
     friend bool operator<=(const String&, const String&);
 
-    const char& operator[](int);
+    const char& operator[](size_t);
 
     friend std::ostream& operator<<(std::ostream&, const String&);
     friend std::istream& operator>>(std::istream&, String&);

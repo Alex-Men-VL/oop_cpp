@@ -106,7 +106,7 @@ bool operator<=(const String &lStr, const String &rStr)
     return strcmp(lStr.m_str, rStr.m_str) <= 0;
 }
 
-const char& String::operator[](int index) {
+const char& String::operator[](size_t index) {
     if (index >= 0 && index < strlen(m_str)) {
         return m_str[index];
     }

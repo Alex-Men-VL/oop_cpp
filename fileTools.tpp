@@ -37,7 +37,7 @@ void setPersonsFromFile(T inputFileName, TP **persons) {
         throw ERROR_FILE_NOT_OPEN;
     }
 
-    int count;
+    int count = 0;
     inputFile >> count;
 
     int personNumber = 0;
@@ -69,7 +69,7 @@ void checkInput(const int pCount, TP **persons) {
     int delta = 100;
     TS minYear = getCurrentYear<TS>(delta);
 
-    for (int pNumber = 0; pNumber < pCount; pNumber++) {
+    for (size_t pNumber = 0; pNumber < pCount; pNumber++) {
         char lastNameFirstLetter = persons[pNumber]->getLastName()[0];
         if (!isupper(lastNameFirstLetter)) {
             throw ERROR_FL_LN_NOT_CAPITAL;
@@ -98,7 +98,7 @@ void checkInput(const int pCount, TP **persons) {
         if (year > totalYear || year < minYear) {
             throw ERROR_YEAR;
         }
-        for (int digitNumber = 0; digitNumber < dateYearLen; digitNumber++) {
+        for (size_t digitNumber = 0; digitNumber < dateYearLen; digitNumber++) {
             char digit = year[digitNumber];
             if (digitNumber == 0 && digit == '0') {
                 throw ERROR_NOT_CORRECT_DY;
@@ -126,7 +126,7 @@ void printPersonsInFile(TS outputFileName, const int pCount, TP **persons) {
         throw ERROR_FILE_NOT_OPEN;
     }
     outputFile << pCount << "\n";
-    for (int i = 0; i < pCount; i++) {
+    for (size_t i = 0; i < pCount; i++) {
         outputFile << persons[i]->getLastName() << " ";
         outputFile << persons[i]->getFirstName() << " ";
         outputFile << persons[i]->getDateYear() << "\n";
