@@ -28,9 +28,9 @@ TS getOutputFileName(){
 template <typename T, typename TP, typename TS>
 void setPersonsFromFile(T inputFileName, TP **persons) {
     std::ifstream inputFile;
-    TS firstName("");
-    TS lastName("");
-    TS dateYear("");
+    TS firstName;
+    TS lastName;
+    TS dateYear;
 
     inputFile.open(inputFileName);
     if (!inputFile) {
@@ -126,10 +126,10 @@ void printPersonsInFile(TS outputFileName, const int pCount, TP **persons) {
         throw ERROR_FILE_NOT_OPEN;
     }
     outputFile << pCount << "\n";
-    for (size_t i = 0; i < pCount; i++) {
-        outputFile << persons[i]->getLastName() << " ";
-        outputFile << persons[i]->getFirstName() << " ";
-        outputFile << persons[i]->getDateYear() << "\n";
+    for (size_t pNumber = 0; pNumber < pCount; pNumber++) {
+        outputFile << persons[pNumber]->getLastName() << " ";
+        outputFile << persons[pNumber]->getFirstName() << " ";
+        outputFile << persons[pNumber]->getDateYear() << "\n";
     }
 }
 

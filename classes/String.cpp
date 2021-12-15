@@ -14,7 +14,6 @@ String::String(const String &otherStr)
     size_t len = strlen(otherStr.m_str);
     m_str = new char[len + 1];
     strcpy(m_str, otherStr.m_str);
-
 }
 
 String::String(String &&otherStr) noexcept
@@ -24,12 +23,12 @@ String::String(String &&otherStr) noexcept
 }
 
 String::~String() {
-    delete[] m_str;
+    delete m_str;
 }
 
 String &String::operator=(const String &otherStr) {
     if (&otherStr != this) {
-        delete[] m_str;
+        delete m_str;
 
         size_t len = strlen(otherStr.m_str);
         m_str = new char[len + 1];
@@ -40,7 +39,7 @@ String &String::operator=(const String &otherStr) {
 
 String &String::operator=(String &&otherStr) noexcept {
     if (&otherStr != this) {
-        delete[] m_str;
+        delete m_str;
 
         m_str = otherStr.m_str;
         otherStr.m_str = nullptr;  // we forbid erasing the data referenced by the pointer

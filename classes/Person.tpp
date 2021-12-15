@@ -3,9 +3,9 @@
 template<class T>
 Person<T>::Person() :
     T(),
-    m_firstName(T("")),
-    m_lastName(T("")),
-    m_dateYear(T("")),
+    m_firstName(T()),
+    m_lastName(T()),
+    m_dateYear(T()),
     m_hasNamesake(false) {
 }
 
@@ -63,7 +63,7 @@ int Person<T>::getDateYearLen() const {
 }
 
 template<class T>
-void Person<T>::setPerson(T &lastName, T &firstName, T &dateYear) {
+void Person<T>::setPerson(const T &lastName, const T &firstName, const T &dateYear) {
     m_firstName = firstName;
     m_lastName = lastName;
     m_dateYear = dateYear;

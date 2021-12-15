@@ -24,7 +24,7 @@ public:
     int getLastNameLen() const;
     int getDateYearLen() const;
 
-    void setPerson(T&, T&, T&);
+    void setPerson(const T&, const T&, const T&);
     void setNamesake();
 
     bool isLess(const Person<T>*) const;

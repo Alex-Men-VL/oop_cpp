@@ -21,8 +21,6 @@ const char* ERROR_NOT_CORRECT_DY = "The year of birth must be a four-digit numbe
 const char* ERROR_YEAR = "Incorrect year. The age cannot be negative and is more than 100 years old";
 
 template <typename TS>
-TS setFileName(TS &);
-template <typename TS>
 TS getInputFileName();
 template <typename TS>
 TS getOutputFileName();

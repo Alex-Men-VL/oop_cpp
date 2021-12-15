@@ -11,7 +11,7 @@ int getSolution(T inputFileName, T outputFileName) {
         setPersonsCountFromFile<T>(inputFileName, personsCount);
     } catch (const char* error) {
         std::cerr << error << std::endl;
-        return 1;
+        return -1;
     }
     TP *persons[personsCount];
 
@@ -20,7 +20,7 @@ int getSolution(T inputFileName, T outputFileName) {
         checkInput<TP, TS>(personsCount, persons);
     } catch (const char* error) {
         std::cerr << error << std::endl;
-        return 1;
+        return -1;
     }
 
     sortPersons<TP>(personsCount, persons);
@@ -30,12 +30,12 @@ int getSolution(T inputFileName, T outputFileName) {
         printPersonsInFile<T, TP>(outputFileName, personsCount, persons);
     } catch (const char* error) {
         std::cerr << error << std::endl;
-        return 1;
+        return -1;
     }
 
 
     int diffLastNamesCount = getDifLastNamesNumber<TP>(personsCount, persons);
-    std::cout << "The number of different surnames in the file: " << diffLastNamesCount << std::endl;
+    std::cout << "\nThe number of different surnames in the file: " << diffLastNamesCount << std::endl;
 
     int namesakesCount = getNamesakesNumber<TP>(personsCount, persons);
     std::cout << "Number of persons with matching last names and first names: " << namesakesCount << std::endl;
@@ -64,13 +64,13 @@ int main(int argc, char *argv[]) {
     } else if (taskNumber == 1) {
         std::cout << "Using the string class from STL\n" << std::endl;
 
-        std::string iFileName;
-        std::string oFileName;
-        iFileName = getInputFileName<std::string>();
-        oFileName = getOutputFileName<std::string>();
-        return getSolution<std::string, Person<std::string>, std::string>(iFileName, oFileName);
+        std::string inputFileName;
+        std::string outputFileName;
+        inputFileName = getInputFileName<std::string>();
+        outputFileName = getOutputFileName<std::string>();
+        return getSolution<std::string, Person<std::string>, std::string>(inputFileName, outputFileName);
     } else {
         std::cerr << ERROR_NOT_CORRECT_ARGUMENT << std::endl;
-        return 1;
+        return -1;
     }
 }
